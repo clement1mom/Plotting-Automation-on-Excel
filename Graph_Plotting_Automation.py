@@ -5,7 +5,7 @@
 
 import pandas as pd
 import tkinter as tk
-from tkinter import fi
+from tkinter import filedialog as fd
 
 
 ### Select Input File (Only one)
@@ -17,11 +17,11 @@ root.destroy()
 
 ### New variables for the progress
 new_table = pd.DataFrame()
-list_columns_removed = [    # Remove some columns, which would not be plotted
+list_columns_removed = [                                        # Remove some columns, which would not be plotted
     "Column name 1",
     "Column name 2"
     ]
-list_columns_plot = [   # Select which columns would be plotted
+list_columns_plot = [                                           # Select which columns would be plotted
     "Column name 1",
     "Column name 2"
     ]
@@ -30,11 +30,11 @@ sheet_name = []
 ### Function here would be used in the progress
 # Function: creating table based on column name
 def making_table(index):
-    new_table["Time"] = Calc_data[0]["Time"]    # Assign same x-axis for all table
+    new_table["Time"] = Calc_data[0]["Time"]                    # Assign same x-axis for all table, "Time" as an example
     n = 0
     for table in Calc_data:
-        column_name = table["Vessel_ID"][0]     # Set Column name as individual ID 
-        new_table[column_name] = table[index]   # Copy and paste from original to new table a based on new ID
+        column_name = table["Strain_ID"][0]                     # Set Column name as individual ID 
+        new_table[column_name] = table[index]                   # Copy and paste from original to new table a based on new ID
         n += 1
     globals()[index] = new_table
     return globals()[index]
@@ -49,9 +49,9 @@ def change_columns_name(table):
 
 ### Extract data from file and been saved as dataframe in list
 for sheet in data.sheet_names:
-    if "Calc" in sheet:         # Select specific sheet from file
+    if "Calc" in sheet:                                         # Select specific sheet from file, "Calc" as an example
         sheet_name.append(sheet)
-sheet_name = sheet_name[1:]     # remove specific sheet
+sheet_name = sheet_name[1:]                                     # remove specific sheet if needed
 
 
 ### Data sorting and organizing for each table
